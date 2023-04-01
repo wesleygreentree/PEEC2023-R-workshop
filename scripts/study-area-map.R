@@ -106,11 +106,13 @@ print(simple.haro.strait)
 print(ne.pacific, vp = inset.viewport)
 dev.off()
 
+## Adding spatial data layers from others
+
 # read in RCA shapefile
 rca <- readOGR("data/rca-shapefile", "rockfish_102001")
 str(rca) # canada albers equal area conic
 
-# convert to lat/long
+# convert to lat/long (WGS 84)
 rca.wgs <- spTransform(rca, CRS(SRS_string = "EPSG:4326"))
 
 rca.wgs.coords <- lapply(rca.wgs@polygons, 
